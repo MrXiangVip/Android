@@ -1,0 +1,2 @@
+/home/xshx/code/weidongshan/emulator/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/xshx/code/weidongshan/emulator/cmake-build-debug/CMakeFiles/edit_cache.dir
