@@ -1,9 +1,10 @@
 
 package com.wave;
 
-
+import com.wave.WindowManagerService;
 public class ActivityManagerService{
 
+    WindowManagerService mWindowManager;
 
     private void start() {
 
@@ -40,5 +41,14 @@ public class ActivityManagerService{
 
           Launcher.main(new String[] {ActivityManagerService.class.getName()});
           return true;
+    }
+
+
+    public void setWindowManager(WindowManagerService wm) {
+        synchronized (this) {
+            mWindowManager = wm;
+//             mStackSupervisor.setWindowManager(wm);
+//             mLockTaskController.setWindowManager(wm);
+        }
     }
 }

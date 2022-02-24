@@ -1,19 +1,27 @@
 //  相当于 frameworks/base/services/java/com/android/server/SystemServer.java
 
 package com.wave;
-
+import com.wave.PackageManagerService;
+import com.wave.Context;
+import com.wave.WindowManagerService;
+import com.wave.ActivityThread;
+import com.wave.PhoneWindowManager;
 public final class SystemServer {
     private static final String TAG = "SystemServer";
 
     private SystemServiceManager mSystemServiceManager;
     private ActivityManagerService mActivityManagerService;
 
+    private PackageManagerService mPackageManagerService;
+    private Context mSystemContext;
 
     public static void main(String[] args) {
             new SystemServer().run();
     }
     private void run() {
         mSystemServiceManager = new SystemServiceManager();
+
+        createSystemContext();
 
         try {
             System.out.println("StartServices");
@@ -28,10 +36,24 @@ public final class SystemServer {
         }
     }
 
+    private void createSystemContext() {
+        ActivityThread activityThread = ActivityThread.systemMain();
+        mSystemContext = activityThread.getSystemContext();
+//         mSystemContext.setTheme(DEFAULT_SYSTEM_THEME);
+
+//         final Context systemUiContext = activityThread.getSystemUiContext();
+//         systemUiContext.setTheme(DEFAULT_SYSTEM_THEME);
+    }
+
     private void startBootstrapServices() {
             System.out.println( "Reading configuration...");
+//             Installer installer = mSystemServiceManager.startService(Installer.class);
+            Installer installer = new Installer();
+
             mActivityManagerService = mSystemServiceManager.startService(
                             ActivityManagerService.Lifecycle.class).getService();
+            mPackageManagerService = PackageManagerService.main(mSystemContext, installer,
+                    true, true);
     }
 
     private void startCoreServices() {
@@ -40,7 +62,20 @@ public final class SystemServer {
 
     private void startOtherServices() {
             System.out.println("startOtherServices");
+           final Context context = mSystemContext;
+
+            InputManagerService inputManager = null;
+
+            WindowManagerService wm = null;
+
+            inputManager = new InputManagerService(context);
+
+            wm = WindowManagerService.main(context, inputManager,
+                    true,false, true, new PhoneWindowManager());
+
+            mActivityManagerService.setWindowManager(wm);
             System.out.println("在这里启动 HomeActivity");
+
             mActivityManagerService.systemReady();
 
     }
