@@ -19,6 +19,8 @@ public final class SystemServer {
             new SystemServer().run();
     }
     private void run() {
+
+        Looper.prepareMainLooper();
         mSystemServiceManager = new SystemServiceManager();
 
         createSystemContext();
@@ -34,6 +36,8 @@ public final class SystemServer {
         } finally {
             System.out.println("finally ");
         }
+        Looper.loop();
+
     }
 
     private void createSystemContext() {
