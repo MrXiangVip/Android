@@ -2,6 +2,7 @@
 package com.wave;
 
 import com.wave.WindowManagerService;
+import com.wave.Process.ProcessStartResult;
 public class ActivityManagerService{
 
     WindowManagerService mWindowManager;
@@ -38,9 +39,17 @@ public class ActivityManagerService{
     }
 
     boolean startHomeActivityLocked( String reason) {
+        if( true ){
+             Launcher.main(new String[] {ActivityManagerService.class.getName()});
+        }else{
+    //       ActivityManagerService 4466 行
+             System.out.println("在这里分裂出应用进程");
+             String processName ="Launcher";
+             ProcessStartResult startResult = Process.start("com.wave.ActivityThread",
+                                      processName, null);
+        }
 
-          Launcher.main(new String[] {ActivityManagerService.class.getName()});
-          return true;
+         return true;
     }
 
 
