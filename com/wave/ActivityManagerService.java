@@ -39,6 +39,7 @@ public class ActivityManagerService{
     }
 
     boolean startHomeActivityLocked( String reason) {
+        System.out.println("startHomeActivityLocked\n");
         if( true ){
              Launcher.main(new String[] {ActivityManagerService.class.getName()});
         }else{

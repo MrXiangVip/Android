@@ -1,5 +1,7 @@
 //
 // Created by xshx on 2021/5/22.
+//参考
+//frameworks/base/cmds/app_process/app_main.cpp
 //
 
 #include<stdio.h>
@@ -49,3 +51,4 @@ int main(int argc,char **argv)
 
     return 0;
 }
+

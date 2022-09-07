@@ -8,25 +8,23 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <unistd.h>
 
-
-
-JNIEXPORT jint JNICALL Java_com_wave_Zygote_nativeForkSystemServer (JNIEnv *env, jobject obj){
-    printf("fork \n");
+static pid_t ForkAndSpecializeCommon(JNIEnv *env, jobject obj){
     pid_t fpid = fork();
     if( fpid == 0 ){
         printf("这里是子进程 ID :%d \n",getpid());
 
-        jclass launcher_class;
-        jmethodID main_method;
+//        jclass launcher_class;
+//        jmethodID main_method;
 //        launcher_class =(*env)->FindClass(env, "com/wave/Launcher");
-        launcher_class =(*env)->FindClass(env, "com/wave/SystemServer");
-        main_method =(*env)->GetStaticMethodID(env, launcher_class, "main","([Ljava/lang/String;)V");
-        (*env)->CallStaticVoidMethod(env,launcher_class, main_method, NULL);
-        if ((*env)->ExceptionCheck(env)) {
-            printf("Error calling post fork hooks. \n");
-        }
-        printf("start launcher.main \n");
+//        launcher_class =(*env)->FindClass(env, "com/wave/SystemServer");
+//        main_method =(*env)->GetStaticMethodID(env, launcher_class, "main","([Ljava/lang/String;)V");
+//        (*env)->CallStaticVoidMethod(env,launcher_class, main_method, NULL);
+//        if ((*env)->ExceptionCheck(env)) {
+//            printf("Error calling post fork hooks. \n");
+//        }
+//        printf("start launcher.main \n");
 
     }else {
         printf("这是zygote 进程 ID :%d \n", getpid());
@@ -39,3 +37,17 @@ JNIEXPORT jint JNICALL Java_com_wave_Zygote_nativeForkSystemServer (JNIEnv *env,
 
     return fpid;
 }
+
+// 创建系统进程
+JNIEXPORT jint JNICALL Java_com_wave_Zygote_nativeForkSystemServer (JNIEnv *env, jobject obj){
+    printf("Java_com_wave_Zygote_nativeForkSystemServer \n");
+    return  ForkAndSpecializeCommon(env, obj);
+
+}
+
+
+// 创建应用进程
+JNIEXPORT jint JNICALL Java_com_wave_Zygote_nativeForkAndSpecialize (JNIEnv *env, jobject obj){
+    return  ForkAndSpecializeCommon(env, obj);
+}
+

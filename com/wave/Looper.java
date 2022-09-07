@@ -63,7 +63,7 @@ public final class Looper {
                   synchronized(queue) {
                       while (queue.size() == 0) {
                           try {
-                              System.out.println("wait here" );
+                              System.out.println("等待消息 wait here" );
 
                               queue.wait();
                           } catch (Exception e) {

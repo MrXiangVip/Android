@@ -1,14 +1,45 @@
-// 参考android 9 源码  ZygoteInit.java 文件
+// 参考
+// android 9 源码  ZygoteInit.java 文件
+///frameworks/base/core/java/com/android/internal/os/ZygoteInit.java
 package com.wave;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import java.lang.Thread;
 import java.lang.Exception;
+import java.lang.reflect.Method;
 
 public class ZygoteInit{
 
     public native void helloWorld(); // 注意，这个native方法就是调用C语言接口用的
+
+// frameworks/base/core/java/com/android/internal/os/RuntimeInit.java
+    static class MethodAndArgsCaller implements Runnable {
+        /** method to call */
+//         private final Method mMethod;
+
+        /** argument array */
+//         private final String[] mArgs;
+
+        public MethodAndArgsCaller() {
+               System.out.println("MethodAndArgsCaller...");
+//             mMethod = method;
+//             mArgs = args;
+        }
+
+        public void run() {
+                System.out.println("反射的方式启动 system_server...");
+                Class<?> cl;
+
+                try {
+                    cl = Class.forName("com.wave.SystemServer");
+                    Method m = cl.getMethod("main");
+                    m.invoke(null);
+                } catch (Exception ex) {
+                    System.out.println("error"+ex.toString());
+                }
+        }
+    }
 
 //     static{
 //         System.loadLibrary("hello");  // 这行是调用动态链接库
@@ -43,20 +74,33 @@ public class ZygoteInit{
 //             System.loadLibrary("compiler_rt");
 //             System.loadLibrary("jnigraphics");
     }
+    private static Runnable handleSystemServerProcess(){
+        System.out.println("handleSystemServerProcess...");
+        return ZygoteInit.zygoteInit( );
+    }
 
     private static Runnable forkSystemServer(String abiList, String socketName,
                 ZygoteServer zygoteServer) {
         int pid;
         pid = Zygote.forkSystemServer();
-        System.out.println(" pid " + pid);
+        if( pid ==0 ){
+              System.out.println("子进程 pid " + pid);
+              zygoteServer.closeServerSocket();
+              return handleSystemServerProcess();
+        }
+        System.out.println("父进程 pid " + pid+"\n");
+
         return null;
     }
+
 	public static void main(String[] args){
 		System.out.println("Hello, ZygoteInit");
 		String abiList = null;
         String socketName = "zygote";
 
 		ZygoteServer zygoteServer = new ZygoteServer();
+		zygoteServer.registerServerSocketFromEnv(socketName);
+
         preload();
         boolean startSystemServer = true;
         if (startSystemServer) {
@@ -64,6 +108,7 @@ public class ZygoteInit{
                 // {@code r == null} in the parent (zygote) process, and {@code r != null} in the
                 // child (system_server) process.
                 if (r != null) {
+                    System.out.println("准备启动 system_server");
                     r.run();
                     return;
                 }
@@ -72,5 +117,9 @@ public class ZygoteInit{
         zygoteServer.runSelectLoop(abiList);
 	}
 
+    public static final Runnable zygoteInit( ) {
+        System.out.println("zygoteInit");
+        return new MethodAndArgsCaller();
+    }
 
 }

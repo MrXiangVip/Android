@@ -15,7 +15,7 @@ public final class SystemServer {
     private PackageManagerService mPackageManagerService;
     private Context mSystemContext;
 
-    public static void main(String[] args) {
+    public static void main() {
             new SystemServer().run();
     }
     private void run() {
