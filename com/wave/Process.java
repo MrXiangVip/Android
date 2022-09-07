@@ -1,3 +1,6 @@
+/* xshx add
+*  path: frameworks/base/core/java/android/os/Process.java
+*/
 package com.wave;
 public class Process {
     private static final String LOG_TAG = "Process";
@@ -20,10 +23,9 @@ public class Process {
     public static final ZygoteProcess zygoteProcess =
             new ZygoteProcess(ZYGOTE_SOCKET, SECONDARY_ZYGOTE_SOCKET);
 
-    public static final ProcessStartResult start(final String processClass,
-                                  final String niceName,String[] zygoteArgs) {
-        System.out.println("start "+processClass+" "+niceName);
+    public static final ProcessStartResult start(final String processClass) {
+        System.out.println("ProcessStartResult start "+processClass);
 
-        return zygoteProcess.start(processClass, niceName, zygoteArgs);
+        return zygoteProcess.start( processClass );
     }
 }

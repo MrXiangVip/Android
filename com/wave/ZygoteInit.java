@@ -19,24 +19,25 @@ public class ZygoteInit{
 //         private final Method mMethod;
 
         /** argument array */
-//         private final String[] mArgs;
-
-        public MethodAndArgsCaller() {
-               System.out.println("MethodAndArgsCaller...");
+        private final String mArgs;
+        private final String mClassName;
+        public MethodAndArgsCaller(String args, String className) {
+               System.out.println("MethodAndArgsCaller..."+args +" "+ className);
 //             mMethod = method;
-//             mArgs = args;
+            mArgs = args;
+            mClassName = className;
         }
 
         public void run() {
-                System.out.println("反射的方式启动 system_server...");
+                System.out.println("反射的方式启动 ..."+mArgs +" 参数: "+mClassName);
                 Class<?> cl;
 
                 try {
-                    cl = Class.forName("com.wave.SystemServer");
-                    Method m = cl.getMethod("main");
-                    m.invoke(null);
+                    cl = Class.forName( mArgs );
+                    Method m = cl.getMethod("main",String.class);
+                    m.invoke(null, mClassName);
                 } catch (Exception ex) {
-                    System.out.println("error"+ex.toString());
+                    ex.printStackTrace();
                 }
         }
     }
@@ -89,7 +90,6 @@ public class ZygoteInit{
               return handleSystemServerProcess();
         }
         System.out.println("父进程 pid " + pid+"\n");
-
         return null;
     }
 
@@ -98,6 +98,7 @@ public class ZygoteInit{
 		String abiList = null;
         String socketName = "zygote";
 
+        final Runnable caller;
 		ZygoteServer zygoteServer = new ZygoteServer();
 		zygoteServer.registerServerSocketFromEnv(socketName);
 
@@ -114,12 +115,19 @@ public class ZygoteInit{
                 }
         }
 
-        zygoteServer.runSelectLoop(abiList);
+        caller = zygoteServer.runSelectLoop(abiList);
+        if( caller != null ){
+            caller.run();
+        }
 	}
 
     public static final Runnable zygoteInit( ) {
-        System.out.println("zygoteInit");
-        return new MethodAndArgsCaller();
+        System.out.println("zygoteInit  这里启动 systemserver  ");
+        return new MethodAndArgsCaller("com.wave.SystemServer","system_server");
     }
 
+    static final Runnable childZygoteInit(String className) {
+        System.out.println("childZygoteInit  这里启动 activitythread "+className);
+        return new MethodAndArgsCaller("com.wave.ActivityThread", className);
+    }
 }

@@ -1,6 +1,9 @@
-
+//
 package com.wave;
 import java.util.ArrayList;
+import java.net.Socket;
+import java.io.*;
+
 
 public class ZygoteProcess {
     private static final String LOG_TAG = "ZygoteProcess";
@@ -25,12 +28,10 @@ public class ZygoteProcess {
         mSecondarySocket = secondarySocket;
     }
 
-    public final Process.ProcessStartResult start(final String processClass,
-                                                  final String niceName,
-                                                  String[] zygoteArgs) {
+    public final Process.ProcessStartResult start( final String processClass ) {
+        System.out.println("start "+processClass);
         try {
-            return startViaZygote(processClass, niceName,
-                    zygoteArgs);
+            return startViaZygote(processClass);
         } catch (RuntimeException ex) {
             System.out.println(
                     "Starting VM process through Zygote failed");
@@ -40,29 +41,65 @@ public class ZygoteProcess {
     }
 
 
-    private Process.ProcessStartResult startViaZygote(final String processClass,
-                                                      final String niceName,
-                                                      String[] extraArgs){
-        ArrayList<String> argsForZygote = new ArrayList<String>();
+    private Process.ProcessStartResult startViaZygote(final String processClass ){
+         System.out.println("startViaZygote "+processClass);
+
+//         ArrayList<String> argsForZygote = new ArrayList<String>();
 
         // --runtime-args, --setuid=, --setgid=,
         // and --setgroups= must go first
 
-        if (extraArgs != null) {
-            for (String arg : extraArgs) {
-                argsForZygote.add(arg);
-            }
-        }
+//         if (extraArgs != null) {
+//             for (String arg : extraArgs) {
+//                 argsForZygote.add(arg);
+//             }
+//         }
 
         synchronized(mLock) {
-            return zygoteSendArgsAndGetResult( argsForZygote);
+            return zygoteSendArgsAndGetResult( processClass);
         }
     }
 
-    private static Process.ProcessStartResult zygoteSendArgsAndGetResult(
-             ArrayList<String> args){
+    private static Process.ProcessStartResult zygoteSendArgsAndGetResult( String processClass){
 
-        System.out.println("请求创建进程");
-        return null;
+            System.out.println("zygoteSendArgsAndGetResult "+processClass);
+            try {
+                System.out.println("尝试连接");
+//                Socket s = new Socket("172.16.57.224", 502);
+                Socket socket = new Socket("localhost", 10000);
+                System.out.println("连接成功！");
+                //构建IO
+                OutputStream outs = socket.getOutputStream();
+
+                PrintWriter writer = new PrintWriter( outs );
+                //向服务器端发送一条消息
+                String input = processClass;
+
+                writer.write( input );
+                writer.flush();
+                System.out.println("发送:"+input);
+                socket.shutdownOutput();
+                //读取服务器返回的消息
+
+
+                InputStream ins = socket.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(ins));
+                String msg = "";
+                while ( (msg = reader.readLine()) != null){
+                    System.out.println("服务器端发来：" + msg);
+                }
+
+                reader.close();
+                ins.close();
+                writer.close();
+                outs.close();
+
+//                socket.close();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Process.ProcessStartResult result = new Process.ProcessStartResult();
+            return result;
     }
 }

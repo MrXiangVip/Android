@@ -27,8 +27,7 @@ static pid_t ForkAndSpecializeCommon(JNIEnv *env, jobject obj){
 //        printf("start launcher.main \n");
 
     }else {
-        printf("这是zygote 进程 ID :%d \n", getpid());
-        printf("System server process %d has been created %d", fpid);
+        printf("这是父 进程 ID :%d \n", getpid());
         int status;
         if (waitpid(fpid, &status, WNOHANG) == fpid) {
             printf("System server process %d has died. Restarting Zygote!", fpid);

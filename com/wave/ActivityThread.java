@@ -19,7 +19,7 @@ public final class ActivityThread  {
         // process.
         System.out.println("--systemMain--");
         ActivityThread thread = new ActivityThread();
-        thread.attach(true, 0);
+        thread.attach(true, null);
         return thread;
     }
 
@@ -45,12 +45,12 @@ public final class ActivityThread  {
             System.out.println("getHandler");
             return mH;
     }
-    public static void main(String[] args) {
+    public static void main(String args) {
         System.out.println("--main--");
         Looper.prepareMainLooper();
-
         ActivityThread thread = new ActivityThread();
-        thread.attach(false, 0);
+        String className = args;
+        thread.attach(false, className);
         if (sMainThreadHandler == null) {
                 sMainThreadHandler = thread.getHandler();
         }
@@ -63,16 +63,14 @@ public final class ActivityThread  {
                 System.out.println("msg "+msg.what);
             }
     }
-    private void attach(boolean system, long startSeq) {
+    private void attach(boolean system, String className) {
+            System.out.println("attach "+className);
             mSystemThread = system;
             if( !system ){
                    System.out.println(" 附上非系统进程 ");
 //                 final IActivityManager mgr = ActivityManager.getService();
-//                 try {
-//                     mgr.attachApplication(mAppThread, startSeq);
-//                 } catch (RemoteException ex) {
-//                     throw ex.rethrowFromSystemServer();
-//                 }
+                    Activity activity = performLaunchActivity(className);
+                    activity.onCreate();
             }else{
                    System.out.println("附上系统进程 ");
 //                 try {
@@ -90,8 +88,9 @@ public final class ActivityThread  {
 
     }
 
-    private Activity performLaunchActivity(ActivityClientRecord r, Intent customIntent) {
-        Activity activity = null;
+    private Activity performLaunchActivity(String className) {
+        System.out.println("performLaunchActivity "+className);
+        Activity activity = newActivity( className);
         return activity;
     }
 //     public Activity handleLaunchActivity(ActivityClientRecord r,
@@ -104,5 +103,17 @@ public final class ActivityThread  {
 //         System.out.println("handleResumeActivity " );
 //
 //     }
+
+    public Activity newActivity(String className){
+            System.out.println("newActivity "+className);
+            try{
+                Class<?> clazz = Class.forName( className );
+                Activity activity = (Activity)clazz.newInstance();
+                return activity;
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            return null;
+     }
 
 }
