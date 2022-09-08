@@ -67,7 +67,8 @@ public final class SystemServer {
 
     private void startOtherServices() {
             System.out.println("startOtherServices");
-           final Context context = mSystemContext;
+            final Context context = mSystemContext;
+            mPackageManagerService.systemReady();
 
             InputManagerService inputManager = null;
 

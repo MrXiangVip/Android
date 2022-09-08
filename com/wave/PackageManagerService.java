@@ -1,13 +1,13 @@
 
 package com.wave;
-public class PackageManagerService{
+public class PackageManagerService {
 
 
     public static PackageManagerService main(Context context, Installer installer,
             boolean factoryTest, boolean onlyCore) {
         // Self-check for initial settings.
 //         PackageManagerServiceCompilerMapping.checkProperties();
-//
+        System.out.println("启动PackageManagerService");
         PackageManagerService m = new PackageManagerService(context, installer,
                 factoryTest, onlyCore);
 //         m.enableSystemUserPackages();
@@ -18,6 +18,10 @@ public class PackageManagerService{
     }
 
     public PackageManagerService(Context context, Installer installer,boolean factoryTest, boolean onlyCore) {
+        System.out.println("遍历packages");
+    }
 
+    public void systemReady() {
+        System.out.println("PackageManagerService systemReady");
     }
 }
