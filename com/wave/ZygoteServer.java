@@ -73,8 +73,7 @@ class ZygoteServer {
                 try{
                     mServerSocket = new ServerSocket( 10000);
                 }catch( Exception e ){
-
-                    System.out.println("error "+e.toString());
+                    e.printStackTrace();
                 }
            }
     }
@@ -130,7 +129,7 @@ class ZygoteServer {
                     return handleChildProc(clientMessage);
                 }
             }catch(Exception e){
-                 System.out.println("error "+e.toString());
+                 e.printStackTrace();
             }
          }
     }
@@ -142,7 +141,7 @@ class ZygoteServer {
                 mServerSocket.close();
             }
         } catch (Exception ex) {
-            System.out.println( "Zygote:  error closing sockets"+ ex.toString());
+            ex.printStackTrace();
         }
 
         mServerSocket = null;

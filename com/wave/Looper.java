@@ -67,8 +67,7 @@ public final class Looper {
 
                               queue.wait();
                           } catch (Exception e) {
-                              System.out.println("wait error" + e.toString());
-
+                              e.printStackTrace();
                           }
                       }
                       if (queue.size() > 0) {
