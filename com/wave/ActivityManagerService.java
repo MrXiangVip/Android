@@ -45,7 +45,6 @@ public class ActivityManagerService{
     boolean startHomeActivityLocked( String reason) {
         System.out.println("startHomeActivityLocked\n");
         if( true ){
-            Launcher.main();
             startActivity("com.wave.Launcher");
         }
          return true;

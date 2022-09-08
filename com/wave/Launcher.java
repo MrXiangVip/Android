@@ -7,9 +7,7 @@ import java.lang.Exception;
 
 public class Launcher  extends Activity{
 
-    static void main(){
-        System.out.println("Launcher main");
-    }
+
     protected void onCreate( ) {
 		System.out.println("Hello, Launcher");
 		JFrame frm = new JFrame("模拟器");
