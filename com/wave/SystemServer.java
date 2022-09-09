@@ -55,8 +55,9 @@ public final class SystemServer {
 //             Installer installer = mSystemServiceManager.startService(Installer.class);
             Installer installer = new Installer();
 
-            mActivityManagerService = mSystemServiceManager.startService(
-                            ActivityManagerService.Lifecycle.class).getService();
+//             mActivityManagerService = mSystemServiceManager.startService(
+//                             ActivityManagerService.Lifecycle.class).getService();
+            mActivityManagerService = ActivityManagerService.getInstance();
             mPackageManagerService = PackageManagerService.main(mSystemContext, installer,
                     true, true);
     }

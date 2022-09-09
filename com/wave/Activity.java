@@ -4,7 +4,7 @@ package com.wave;
 
 public class Activity extends ContextThemeWrapper{
 // public class Activity{
-
+    private ActivityManagerService  ams;
     private Window mWindow;
     /*package*/ ActivityThread mMainThread;
     private Thread mUiThread;
@@ -23,7 +23,7 @@ public class Activity extends ContextThemeWrapper{
     }
     public void startActivity(String className){
         System.out.println("startActivity "+className);
-
+        ams.startActivity( className );
     }
 
     protected void onCreate( ) {
@@ -38,5 +38,6 @@ public class Activity extends ContextThemeWrapper{
         mWindow = new PhoneWindow(this, window);
         mWindow.setWindowManager();
 
+        ams =ActivityManagerService.getInstance();
     }
 }

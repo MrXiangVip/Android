@@ -118,6 +118,8 @@ public class ZygoteInit{
         caller = zygoteServer.runSelectLoop(abiList);
         if( caller != null ){
             caller.run();
+        }else{
+            System.out.println("caller null");
         }
 	}
 

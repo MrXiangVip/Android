@@ -9,8 +9,21 @@ import com.wave.WindowManagerService;
 import com.wave.Process.ProcessStartResult;
 public class ActivityManagerService{
 
-    WindowManagerService mWindowManager;
 
+
+    WindowManagerService mWindowManager;
+    private static ActivityManagerService  ams;
+
+    private ActivityManagerService( ){
+        System.out.println("初始化ActivityManagerService");
+    }
+
+    public static ActivityManagerService getInstance( ){
+        if (ams == null) {
+             ams = new ActivityManagerService( );
+        }
+        return ams;
+    }
     private void start() {
 
         System.out.println("ActivityManagerService start ");
@@ -28,7 +41,6 @@ public class ActivityManagerService{
         public void onStart() {
             mService.start();
         }
-
 
 
         public ActivityManagerService getService() {
