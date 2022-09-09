@@ -69,8 +69,8 @@ public final class ActivityThread  {
             if( !system ){
                    System.out.println(" 附上非系统进程 ");
 //                 final IActivityManager mgr = ActivityManager.getService();
-                    Activity activity = performLaunchActivity(className);
-                    activity.onCreate();
+                    Activity activity = handleLaunchActivity(className);
+
             }else{
                    System.out.println("附上系统进程 ");
 //                 try {
@@ -87,10 +87,22 @@ public final class ActivityThread  {
             }
 
     }
+    public Activity handleLaunchActivity(String className){
+        System.out.println("handleLaunchActivity "+className);
+        Activity activity = performLaunchActivity( className );
 
+        return activity;
+    }
     private Activity performLaunchActivity(String className) {
         System.out.println("performLaunchActivity "+className);
         Activity activity = newActivity( className);
+
+        if( activity !=null ){
+            Window window = null;
+
+            activity.attach(this, window);
+            activity.onCreate();
+        }
         return activity;
     }
 //     public Activity handleLaunchActivity(ActivityClientRecord r,
