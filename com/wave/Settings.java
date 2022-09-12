@@ -12,13 +12,14 @@ public class Settings  extends Activity{
 
         protected void onCreate( ) {
     		System.out.println("Hello, Settings");
-            JFrame frm = new JFrame("Settings");
-            frm.setSize( 480, 640);
+            JFrame frame = new JFrame("Settings");
+            frame.setSize( 480, 640);
             GridLayout grid = new GridLayout(3, 3);
             // 设置frm的页面布局为grid
-            frm.setLayout(grid);
-            frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frm.setVisible(true);
+            frame.setLayout(grid);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            System.out.println("设置frm 可见");
+            frame.setVisible(true);
             System.out.println("启动设置");
 
         }

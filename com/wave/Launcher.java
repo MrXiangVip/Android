@@ -46,7 +46,9 @@ public class Launcher  extends Activity{
         System.out.println("启动模拟器");
     }
 
-
-
+//  性能优化中处理耗时操作
+//     public void onWindowFocusChanged(boolean hasWindowFocus) {
+//         super.onWindowFocusChanged(hasWindowFocus);
+//     }
 
 }

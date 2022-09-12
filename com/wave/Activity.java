@@ -5,10 +5,17 @@ package com.wave;
 public class Activity extends ContextThemeWrapper{
 // public class Activity{
     private ActivityManagerService  ams;
+
     private Window mWindow;
+    private WindowManager mWindowManager;
+    /*package*/ View mDecor = null;
+
+
     /*package*/ ActivityThread mMainThread;
     private Thread mUiThread;
     final Handler mHandler = new Handler();
+
+
     public Window getWindow() {
         return mWindow;
     }
@@ -36,7 +43,8 @@ public class Activity extends ContextThemeWrapper{
         mMainThread = aThread;
 
         mWindow = new PhoneWindow(this, window);
-        mWindow.setWindowManager();
+        mWindow.setWindowManager( );
+        mWindowManager = mWindow.getWindowManager();
 
         ams =ActivityManagerService.getInstance();
     }

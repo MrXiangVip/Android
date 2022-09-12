@@ -64,6 +64,7 @@ public class ActivityManagerService{
 
 
     public void setWindowManager(WindowManagerService wm) {
+        System.out.println("ActivityManagerService setWindowManager");
         synchronized (this) {
             mWindowManager = wm;
 //             mStackSupervisor.setWindowManager(wm);

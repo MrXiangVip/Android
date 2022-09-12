@@ -31,7 +31,6 @@ public class ZygoteInit{
         public void run() {
                 System.out.println("反射的方式启动 ..."+mArgs +" 参数: "+mClassName);
                 Class<?> cl;
-
                 try {
                     cl = Class.forName( mArgs );
                     Method m = cl.getMethod("main",String.class);

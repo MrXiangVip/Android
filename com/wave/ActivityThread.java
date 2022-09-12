@@ -4,15 +4,23 @@ package com.wave;
 import com.wave.ContextImpl;
 import com.wave.Handler;
 import com.wave.Activity;
+// import java.util.ArrayMap;
+import java.util.HashMap;
+
 public final class ActivityThread  {
 
 
     private ContextImpl mSystemContext;
     private boolean mSystemThread = false;
 
+
     public static final class ActivityClientRecord {
         Activity activity;
+        Window window;
     }
+
+    final HashMap<String, ActivityClientRecord> mActivities = new HashMap<>();
+
     public static ActivityThread systemMain() {
         // The system process on low-memory devices do not get to use hardware
         // accelerated drawing, since this can add too much overhead to the
@@ -103,6 +111,9 @@ public final class ActivityThread  {
             activity.attach(this, window);
             activity.onCreate();
         }
+        ActivityClientRecord r= new ActivityClientRecord();
+        r.activity = activity;
+        mActivities.put(className, r );
         return activity;
     }
 //     public Activity handleLaunchActivity(ActivityClientRecord r,
@@ -111,11 +122,22 @@ public final class ActivityThread  {
 //
 //     }
 
-//     public void handleResumeActivity(IBinder token, boolean finalStateRequest, boolean isForward,String reason) {
-//         System.out.println("handleResumeActivity " );
-//
-//     }
+    public void handleResumeActivity( boolean finalStateRequest, boolean isForward,String reason) {
+        System.out.println("handleResumeActivity " );
+        final ActivityClientRecord r = performResumeActivity(finalStateRequest, reason);
+        final Activity a = r.activity;
 
+        r.window = r.activity.getWindow();
+        View decor = r.window.getDecorView();
+        WindowManager.LayoutParams l = r.window.getAttributes();
+        a.mDecor = decor;
+    }
+
+    public ActivityClientRecord performResumeActivity( boolean finalStateRequest,String className) {
+        System.out.println("performResumeActivity " );
+        final ActivityClientRecord r = mActivities.get( className );
+        return r;
+    }
     public Activity newActivity(String className){
             System.out.println("newActivity "+className);
             try{
