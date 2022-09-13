@@ -127,6 +127,9 @@ class ZygoteServer {
                     System.out.println("子进程关掉 server socket");
                     mServerSocket.close();
                     return handleChildProc(clientMessage);
+                }else{
+                    socket.close();
+                    System.out.println("父进程关掉连接的客户端socket");
                 }
             }catch(Exception e){
                  e.printStackTrace();

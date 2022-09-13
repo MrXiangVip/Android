@@ -15,8 +15,9 @@ export LD_LIBRARY_PATH=$(pwd)/:$LD_LIBRARY_PATH
 cd ${VPATH}
 echo $(pwd)
 echo "编译app_process"
-javac com/wave/ZygoteInit.java
+javac  com/wave/ZygoteInit.java
 javac  com/wave/Launcher.java
+javac  com/wave/Settings.java
 javac  com/wave/SystemServer.java
 gcc -D__int64="long long" -I/usr/lib/jvm/java-8-openjdk-amd64/include  -I/usr/lib/jvm/java-8-openjdk-amd64/include/linux -o app_process app_process.c  -L/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server -ljvm
 echo "执行.."

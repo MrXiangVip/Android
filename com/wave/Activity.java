@@ -15,6 +15,9 @@ public class Activity extends ContextThemeWrapper{
     private Thread mUiThread;
     final Handler mHandler = new Handler();
 
+    public WindowManager getWindowManager() {
+        return mWindowManager;
+    }
 
     public Window getWindow() {
         return mWindow;

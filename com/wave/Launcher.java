@@ -41,7 +41,7 @@ public class Launcher  extends Activity{
             // 将b[i]添加进frm中
             frm.add(btn[i]);
         }
-        frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//         frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frm.setVisible(true);
         System.out.println("启动模拟器");
     }

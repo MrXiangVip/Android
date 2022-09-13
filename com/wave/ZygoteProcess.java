@@ -77,7 +77,7 @@ public class ZygoteProcess {
 
                 writer.write( input );
                 writer.flush();
-                System.out.println("发送:"+input);
+                System.out.println("ZygoteProcess 发送:"+input);
                 socket.shutdownOutput();
                 //读取服务器返回的消息
 
@@ -97,6 +97,7 @@ public class ZygoteProcess {
 //                socket.close();
 
             } catch (Exception e) {
+//                 socket.close();
                 e.printStackTrace();
             }
             Process.ProcessStartResult result = new Process.ProcessStartResult();

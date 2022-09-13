@@ -22,4 +22,8 @@ public class View{
         }
         return null;
     }
+
+    public void setLayoutParams(ViewGroup.LayoutParams params) {
+        System.out.println("setLayoutParams");
+    }
 }

@@ -54,7 +54,7 @@ public final class ActivityThread  {
             return mH;
     }
     public static void main(String args) {
-        System.out.println("--main--");
+        System.out.println("ActivityThread--main--"+args);
         Looper.prepareMainLooper();
         ActivityThread thread = new ActivityThread();
         String className = args;
@@ -129,8 +129,11 @@ public final class ActivityThread  {
 
         r.window = r.activity.getWindow();
         View decor = r.window.getDecorView();
+        ViewManager wm = a.getWindowManager();
         WindowManager.LayoutParams l = r.window.getAttributes();
         a.mDecor = decor;
+
+        wm.addView(decor, l);
     }
 
     public ActivityClientRecord performResumeActivity( boolean finalStateRequest,String className) {
