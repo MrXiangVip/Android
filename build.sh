@@ -2,6 +2,14 @@
 
 
 VPATH=$(pwd)
+
+cd ${VPATH}/hardware
+echo "编译hal层so库"
+gcc -fPIC  -I/usr/lib/jvm/java-8-openjdk-amd64/include  -I/usr/lib/jvm/java-8-openjdk-amd64/include/linux -shared -o libFreg.so  com_wave_FregService.cpp
+export LD_LIBRARY_PATH=$(pwd)/:$LD_LIBRARY_PATH
+echo ${LD_LIBRARY_PATH}
+
+
 cd ${VPATH}/com/wave
 echo "生成头文件"
 javac -d . Zygote.java

@@ -17,8 +17,12 @@ public class Settings  extends Activity{
 	                        "桌面和壁纸","显示和亮度","电池",
 	                        "存储","安全","隐私"
 	                        };
+        static {
+            System.loadLibrary( "Freg");
+        }
         protected void onCreate( ) {
     		System.out.println("Hello, Settings");
+    		FregService service = new FregService();
             JFrame frame = new JFrame("Settings");
             frame.setSize( 480, 640);
             JPanel contentPane=new JPanel();    //创建内容面板

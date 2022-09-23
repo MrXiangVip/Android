@@ -67,8 +67,8 @@ public class ZygoteInit{
     }
     private static void preloadSharedLibraries() {
             System.out.println("预加载动态库...");
-            System.loadLibrary("android");
-            System.out.println("加载 libandroid.so  over...");
+            System.loadLibrary("android"); //加载 libandroid.so  库
+            System.out.println("加载 libandroid.so   over...");
 
 
 //             System.loadLibrary("compiler_rt");
