@@ -1,4 +1,4 @@
-package com.wave;
+package com.packages;
 
 import java.awt.GridLayout;
 import javax.swing.JButton;
@@ -10,6 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.*;
 import javax.swing.border.EmptyBorder;
+
+import com.wave.Activity;
+import com.wave.FregService;
 
 public class Settings  extends Activity{
 

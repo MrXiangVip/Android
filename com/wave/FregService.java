@@ -3,7 +3,7 @@ package com.wave;
 public class FregService{
 
     private int mPtr=0;
-    FregService(){
+    public FregService(){
 			System.out.println("Hello, FregService");
             mPtr = init_native();
             if( mPtr ==0 ){

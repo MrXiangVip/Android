@@ -1,4 +1,4 @@
-package com.wave;
+package com.packages;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -7,6 +7,7 @@ import java.lang.Exception;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import com.wave.Activity;
 public class Launcher  extends Activity{
 
 	private	String  apps[]={"设置","图库","日历",
@@ -14,7 +15,7 @@ public class Launcher  extends Activity{
 	                        "短信","相机","视频"
 	                        };
 
-	public  String className[]={"com.wave.Settings","com.wave.Picture","com.wave.Calander",
+	public  String className[]={"com.packages.Settings","com.packages.Picture","com.wave.Calander",
                                "com.wave.Clock","com.wave.Files","com.wave.Telephone",
                                "com.wave.Message","com.wave.Camera","com.wave.Video"
                                };
