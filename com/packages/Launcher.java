@@ -42,6 +42,11 @@ public class Launcher  extends Activity{
             // 将b[i]添加进frm中
             frm.add(btn[i]);
         }
+//         do_nothing_on_close(在 windowconstants 中定义)：不执行任何操作；要求程序在已注册的 windowlistener 对象的 windowclosing方法中处理该操作。
+//         hide_on_close(在 windowconstants 中定义)：调用任意已注册的 windowlistener 对象后自动隐藏该窗体。
+//         dispose_on_close(在 windowconstants 中定义)：调用任意已注册 windowlistener 的对象后自动隐藏并释放该窗体。
+//         exit_on_close(在 jframe 中定义)：使用 system exit 方法退出应用程序。仅在应用程序中使用。
+//         默认情况下，该值被设置为 hide_on_close。更改此属性的值将导致激发属性更改事件，其属性名称为 "defaultcloseoperation"。
 //         frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frm.setVisible(true);
         System.out.println("启动模拟器");
