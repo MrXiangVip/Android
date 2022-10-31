@@ -21,6 +21,9 @@
     这个路径指向libjvm.so 文件
 
 
+
+运行效果:
+
 ![Image text](https://github.com/MrXiangVip/Android/blob/master/image/20220907190153.png)
 
 参考资料：

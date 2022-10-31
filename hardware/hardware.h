@@ -171,3 +171,5 @@ int hw_get_module(const char *id, const struct hw_module_t **module);
 int hw_get_module_by_class(const char *class_id, const char *inst,
                            const struct hw_module_t **module);
 #endif //HARDWARE_HARDWARE_H
+
+//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
