@@ -3,9 +3,11 @@
 package com.wave;
 import com.wave.pm.PackageManagerService;
 import com.wave.Context;
-import com.wave.WindowManagerService;
+import com.wave.wm.WindowManagerService;
 import com.wave.ActivityThread;
 import com.wave.PhoneWindowManager;
+import com.wave.input.InputManagerService;
+
 public final class SystemServer {
     private static final String TAG = "SystemServer";
 

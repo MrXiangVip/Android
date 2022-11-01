@@ -1,5 +1,7 @@
+package com.wave.input;
 
-package com.wave;
+import com.wave.Context;
+
 public class InputManagerService {
 
     private final Context mContext;
@@ -8,5 +10,5 @@ public class InputManagerService {
         this.mContext = context;
 
     }
-}
 
+}

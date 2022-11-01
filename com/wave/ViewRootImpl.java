@@ -13,5 +13,10 @@ public final class ViewRootImpl implements ViewParent{
     public void setView(View view, WindowManager.LayoutParams attrs, View panelParentView) {
         System.out.println("ViewRootImpl setView");
     }
+
+    private void performTraversals() {
+        System.out.println("performTraversals");
+
+    }
 }
 
