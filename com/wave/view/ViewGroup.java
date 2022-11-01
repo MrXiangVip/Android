@@ -2,7 +2,7 @@
 * xshx
 * path: frameworks/base/core/java/android/view/ViewGroup.java
 */
-package com.wave;
+package com.wave.view;
 public abstract class ViewGroup extends View implements  ViewManager {
 
     public static class LayoutParams {

@@ -7,6 +7,7 @@ import com.wave.Activity;
 // import java.util.ArrayMap;
 import java.util.HashMap;
 
+import com.wave.view.*;
 public final class ActivityThread  {
 
 

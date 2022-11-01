@@ -1,5 +1,5 @@
-package com.wave;
-import com.wave.WindowManagerImpl;
+package com.wave.view;
+import com.wave.view.WindowManagerImpl;
 public abstract class Window {
 
     public static final int ID_ANDROID_CONTENT = 16908290;

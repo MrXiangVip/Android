@@ -2,7 +2,7 @@
 * xshx add
 * path: frameworks/base/core/java/android/view/ViewManager.java
 */
-package com.wave;
+package com.wave.view;
 
 
 public interface ViewManager

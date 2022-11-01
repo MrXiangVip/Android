@@ -1,5 +1,7 @@
 
 package com.wave;
+import com.wave.view.*;
+
 public class PhoneWindow extends Window{
     private DecorView mDecor;
     ViewGroup mContentParent;

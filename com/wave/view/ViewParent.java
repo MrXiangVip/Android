@@ -4,7 +4,7 @@
  */
 
 
-package com.wave;
+package com.wave.view;
 
 public interface ViewParent {
 

@@ -2,7 +2,7 @@
 * xshx
 * path :frameworks/base/core/java/android/view/WindowManager.java
 */
-package com.wave;
+package com.wave.view;
 
 public interface WindowManager extends ViewManager {
 

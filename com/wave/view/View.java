@@ -1,4 +1,4 @@
-package com.wave;
+package com.wave.view;
 
 public class View{
     public static final int NO_ID = -1;

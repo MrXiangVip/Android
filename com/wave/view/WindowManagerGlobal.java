@@ -3,7 +3,7 @@
 * path: frameworks/base/core/java/android/view/WindowManagerGlobal.java
 */
 
-package com.wave;
+package com.wave.view;
 
 import java.util.ArrayList;
 

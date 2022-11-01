@@ -2,6 +2,8 @@
 
 package com.wave;
 
+import com.wave.view.Window;
+import com.wave.view.*;
 public class Activity extends ContextThemeWrapper{
 // public class Activity{
     private ActivityManagerService  ams;

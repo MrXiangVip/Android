@@ -4,6 +4,8 @@
  */
 
 package com.wave;
+import com.wave.view.*;
+
 public class DecorView extends FrameLayout {
 
     DecorView(int featureId, PhoneWindow window, WindowManager.LayoutParams params) {

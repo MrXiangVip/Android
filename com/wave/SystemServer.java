@@ -33,9 +33,8 @@ public final class SystemServer {
             startBootstrapServices();
             startCoreServices();
             startOtherServices();
-        } catch (Throwable ex) {
-            System.out.println("SystemServer******************************************");
-            System.out.println("SystemServer************ Failure starting system services");
+        } catch (Exception ex) {
+            ex.printStackTrace();
         } finally {
             System.out.println("finally ");
         }
@@ -81,6 +80,8 @@ public final class SystemServer {
 
             wm = WindowManagerService.main(context, inputManager,
                     true,false, true, new PhoneWindowManager());
+//          此处启动系统输入事件
+            inputManager.start();
 
             mActivityManagerService.setWindowManager(wm);
             System.out.println("在这里启动 HomeActivity");

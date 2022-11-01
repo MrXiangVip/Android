@@ -26,5 +26,16 @@ public class WindowManagerService {
 
 
     }
+//     public int addWindow(Session session, IWindow client, int seq,
+//             LayoutParams attrs, int viewVisibility, int displayId, Rect outFrame,
+//             Rect outContentInsets, Rect outStableInsets, Rect outOutsets,
+//             DisplayCutout.ParcelableWrapper outDisplayCutout, InputChannel outInputChannel)
+    public int addWindow( ){
+        System.out.println("addWindow");
+        int res =0;
+        return res;
+    }
+
+
 
 }

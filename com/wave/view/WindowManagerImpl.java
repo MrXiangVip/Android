@@ -4,8 +4,9 @@
 * path :frameworks/base/core/java/android/view/WindowManagerImpl.java
 */
 
-package com.wave;
+package com.wave.view;
 
+import com.wave.Context;
 public  class WindowManagerImpl implements WindowManager {
 
     private final WindowManagerGlobal mGlobal = WindowManagerGlobal.getInstance();
