@@ -1,4 +1,7 @@
-
+/*
+ 源码路径
+ frameworks/base/core/java/android/app/ContextImpl.java
+ */
 package com.wave;
 import com.wave.ActivityThread;
 class ContextImpl extends Context {

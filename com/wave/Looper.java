@@ -1,3 +1,7 @@
+/*
+ 源码路径
+ frameworks/base/core/java/android/os/Looper.java
+ */
 package com.wave;
 
 import java.lang.ThreadLocal;

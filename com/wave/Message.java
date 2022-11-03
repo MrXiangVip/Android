@@ -1,3 +1,7 @@
+/*
+ 源码路径
+ frameworks/base/core/java/android/os/Message.java
+ */
 package com.wave;
 
 public final class Message  {

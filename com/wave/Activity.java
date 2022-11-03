@@ -1,10 +1,12 @@
-
+/*
+ 源码路径
+ frameworks/base/core/java/android/app/Activity.java
+ */
 
 package com.wave;
 
-import com.wave.view.Window;
 import com.wave.view.*;
-public class Activity extends ContextThemeWrapper{
+public class Activity extends ContextThemeWrapper implements KeyEvent.Callback{
 // public class Activity{
     private ActivityManagerService  ams;
 
@@ -53,4 +55,39 @@ public class Activity extends ContextThemeWrapper{
 
         ams =ActivityManagerService.getInstance();
     }
+
+
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        System.out.println("dispatchKeyEvent");
+        Window win = getWindow();
+        View decor = mDecor;
+        if (decor == null) decor = win.getDecorView();
+        return event.dispatch(this,  this);
+
+    }
+    public boolean onKeyMultiple(int keyCode, int repeatCount, KeyEvent event) {
+        return false;
+    }
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+         return false;
+    }
+    public boolean onKeyLongPress(int keyCode, KeyEvent event) {
+        return false;
+    }
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        System.out.println("onKeyDown");
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+                onBackPressed();
+                return true;
+        }
+
+        return false;
+    }
+    public void onBackPressed() {
+        System.out.println("onBackPressed");
+//         if (mActionBar != null && mActionBar.collapseActionView()) {
+//             return;
+//         }
+    }
+
 }

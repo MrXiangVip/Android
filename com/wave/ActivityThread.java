@@ -1,4 +1,7 @@
-
+/*
+ 源码路径
+ frameworks/base/core/java/android/app/ActivityThread.java
+ */
 package com.wave;
 
 import com.wave.ContextImpl;

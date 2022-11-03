@@ -1,5 +1,5 @@
 /*
-* xshx
+* 源码路径
 * path: frameworks/base/core/java/android/view/WindowManagerGlobal.java
 */
 

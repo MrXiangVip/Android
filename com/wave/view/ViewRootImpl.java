@@ -27,7 +27,7 @@ public final class ViewRootImpl implements ViewParent{
             mAdded = true;
 
             mInputChannel = new InputChannel();
-
+//          此处会调到wms 的addWindow
 
         }
     }

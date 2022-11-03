@@ -1,4 +1,7 @@
-//  相当于 frameworks/base/services/java/com/android/server/SystemServer.java
+/*
+    源码路径:
+    frameworks/base/services/java/com/android/server/SystemServer.java
+ */
 
 package com.wave;
 import com.wave.pm.PackageManagerService;

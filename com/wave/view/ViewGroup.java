@@ -1,6 +1,6 @@
 /*
-* xshx
-* path: frameworks/base/core/java/android/view/ViewGroup.java
+* 源码路径
+* frameworks/base/core/java/android/view/ViewGroup.java
 */
 package com.wave.view;
 public abstract class ViewGroup extends View implements  ViewManager {

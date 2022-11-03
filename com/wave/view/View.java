@@ -1,3 +1,7 @@
+/*
+ 源码路径
+ frameworks/base/core/java/android/view/View.java
+ */
 package com.wave.view;
 
 public class View{

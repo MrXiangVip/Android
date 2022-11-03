@@ -1,3 +1,7 @@
+/*
+ 源码路径
+ frameworks/base/services/core/java/com/android/server/pm/Settings.java
+ */
 package com.wave.pm;
 
 import java.io.File;

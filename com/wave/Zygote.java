@@ -1,3 +1,7 @@
+/*
+ 源码路径
+ frameworks/base/core/java/com/android/internal/os/Zygote.java
+ */
 package com.wave;
 import java.awt.GridLayout;
 import javax.swing.JButton;

@@ -1,3 +1,7 @@
+/*
+ 源码路径
+ frameworks/base/core/java/android/view/Window.java
+ */
 package com.wave.view;
 import com.wave.view.WindowManagerImpl;
 public abstract class Window {

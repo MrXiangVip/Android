@@ -1,4 +1,7 @@
-
+/*
+ 源码路径
+ frameworks/base/core/java/com/android/internal/policy/PhoneWindow.java
+ */
 package com.wave;
 import com.wave.view.*;
 

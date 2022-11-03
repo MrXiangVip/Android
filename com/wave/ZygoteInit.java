@@ -1,6 +1,7 @@
-// 参考
-// android 9 源码  ZygoteInit.java 文件
-///frameworks/base/core/java/com/android/internal/os/ZygoteInit.java
+/*
+ 源码路径
+ frameworks/base/core/java/com/android/internal/os/ZygoteInit.java
+ */
 package com.wave;
 import java.awt.GridLayout;
 import javax.swing.JButton;

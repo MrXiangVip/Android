@@ -1,4 +1,8 @@
-//相当于 frameworks/base/services/core/java/com/android/server/SystemServiceManager.java
+/*
+ 源码路径
+ frameworks/base/services/core/java/com/android/server/SystemServiceManager.java
+ */
+
 
 package com.wave;
 import java.lang.reflect.Constructor;

@@ -1,3 +1,7 @@
+/*
+    源码路径:
+    frameworks/base/core/java/android/content/pm/PackageParser.java
+ */
 package com.wave.pm;
 
 import java.io.File;

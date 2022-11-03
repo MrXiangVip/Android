@@ -1,6 +1,6 @@
 /*
-* xshx
-* path :android/view/WindowManagerImpl.java
+*
+* 源码路径
 * path :frameworks/base/core/java/android/view/WindowManagerImpl.java
 */
 
