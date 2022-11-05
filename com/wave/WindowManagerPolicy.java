@@ -5,5 +5,7 @@
 package com.wave;
 
 public interface WindowManagerPolicy{
+        public interface WindowState {
 
+        }
 }

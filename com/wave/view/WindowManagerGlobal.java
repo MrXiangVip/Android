@@ -10,6 +10,19 @@ import java.util.ArrayList;
 
 public final class WindowManagerGlobal {
     private static final String TAG = "WindowManager";
+
+    public static final int ADD_OKAY = 0;
+    public static final int ADD_BAD_APP_TOKEN = -1;
+    public static final int ADD_BAD_SUBWINDOW_TOKEN = -2;
+    public static final int ADD_NOT_APP_TOKEN = -3;
+    public static final int ADD_APP_EXITING = -4;
+    public static final int ADD_DUPLICATE_ADD = -5;
+    public static final int ADD_STARTING_NOT_NEEDED = -6;
+    public static final int ADD_MULTIPLE_SINGLETON = -7;
+    public static final int ADD_PERMISSION_DENIED = -8;
+    public static final int ADD_INVALID_DISPLAY = -9;
+    public static final int ADD_INVALID_TYPE = -10;
+
     private final Object mLock = new Object();
 
     private static WindowManagerGlobal sDefaultWindowManager;
