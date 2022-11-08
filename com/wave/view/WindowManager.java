@@ -438,6 +438,11 @@ public interface WindowManager extends ViewManager {
          */
         public static final int INVALID_WINDOW_TYPE = -1;
 
+        public LayoutParams() {
+            super(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+//             type = TYPE_APPLICATION;
+//             format = PixelFormat.OPAQUE;
+        }
     }
 
 }
