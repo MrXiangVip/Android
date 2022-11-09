@@ -45,7 +45,7 @@ public final class ViewRootImpl implements ViewParent{
         mAdded = false;
 
     }
-
+//
     public void setView(View view, WindowManager.LayoutParams attrs, View panelParentView) {
         System.out.println("ViewRootImpl setView");
         if( mView == null ){
@@ -55,6 +55,8 @@ public final class ViewRootImpl implements ViewParent{
             requestLayout();
             mInputChannel = new InputChannel();
 //          此处会调到wms 的addWindow
+
+//          Set up the input pipeline.  设置接收输入事件
 
         }
     }

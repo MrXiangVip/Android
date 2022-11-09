@@ -12,7 +12,146 @@ public class View{
 
     static boolean sUseZeroUnspecifiedMeasureSpec = false;
     private static boolean sUseBrokenMakeMeasureSpec = false;
+    int mViewFlags;
+    ListenerInfo mListenerInfo;
 
+    /**
+     * This view is enabled. Interpretation varies by subclass.
+     * Use with ENABLED_MASK when calling setFlags.
+     * {@hide}
+     */
+    static final int ENABLED = 0x00000000;
+
+    /**
+     * This view is disabled. Interpretation varies by subclass.
+     * Use with ENABLED_MASK when calling setFlags.
+     * {@hide}
+     */
+    static final int DISABLED = 0x00000020;
+
+   /**
+    * Mask for use with setFlags indicating bits used for indicating whether
+    * this view is enabled
+    * {@hide}
+    */
+    static final int ENABLED_MASK = 0x00000020;
+
+    /**
+     * This view won't draw. {@link #onDraw(android.graphics.Canvas)} won't be
+     * called and further optimizations will be performed. It is okay to have
+     * this flag set and a background. Use with DRAW_MASK when calling setFlags.
+     * {@hide}
+     */
+    static final int WILL_NOT_DRAW = 0x00000080;
+
+    /**
+     * Mask for use with setFlags indicating bits used for indicating whether
+     * this view is will draw
+     * {@hide}
+     */
+    static final int DRAW_MASK = 0x00000080;
+
+    /**
+     * <p>This view doesn't show scrollbars.</p>
+     * {@hide}
+     */
+    static final int SCROLLBARS_NONE = 0x00000000;
+
+    /**
+     * <p>This view shows horizontal scrollbars.</p>
+     * {@hide}
+     */
+    static final int SCROLLBARS_HORIZONTAL = 0x00000100;
+
+    /**
+     * <p>This view shows vertical scrollbars.</p>
+     * {@hide}
+     */
+    static final int SCROLLBARS_VERTICAL = 0x00000200;
+
+    /**
+     * <p>Mask for use with setFlags indicating bits used for indicating which
+     * scrollbars are enabled.</p>
+     * {@hide}
+     */
+    static final int SCROLLBARS_MASK = 0x00000300;
+
+    /**
+     * Indicates that the view should filter touches when its window is obscured.
+     * Refer to the class comments for more information about this security feature.
+     * {@hide}
+     */
+    static final int FILTER_TOUCHES_WHEN_OBSCURED = 0x00000400;
+
+    /**
+     * Set for framework elements that use FITS_SYSTEM_WINDOWS, to indicate
+     * that they are optional and should be skipped if the window has
+     * requested system UI flags that ignore those insets for layout.
+     */
+    static final int OPTIONAL_FITS_SYSTEM_WINDOWS = 0x00000800;
+
+    /**
+     * <p>This view doesn't show fading edges.</p>
+     * {@hide}
+     */
+    static final int FADING_EDGE_NONE = 0x00000000;
+
+    /**
+     * <p>This view shows horizontal fading edges.</p>
+     * {@hide}
+     */
+    static final int FADING_EDGE_HORIZONTAL = 0x00001000;
+
+    /**
+     * <p>This view shows vertical fading edges.</p>
+     * {@hide}
+     */
+    static final int FADING_EDGE_VERTICAL = 0x00002000;
+
+    /**
+     * <p>Mask for use with setFlags indicating bits used for indicating which
+     * fading edges are enabled.</p>
+     * {@hide}
+     */
+    static final int FADING_EDGE_MASK = 0x00003000;
+
+    /**
+     * <p>Indicates this view can be clicked. When clickable, a View reacts
+     * to clicks by notifying the OnClickListener.<p>
+     * {@hide}
+     */
+    static final int CLICKABLE = 0x00004000;
+
+    /**
+     * <p>Indicates this view is caching its drawing into a bitmap.</p>
+     * {@hide}
+     */
+    static final int DRAWING_CACHE_ENABLED = 0x00008000;
+
+    /**
+     * <p>Indicates that no icicle should be saved for this view.<p>
+     * {@hide}
+     */
+    static final int SAVE_DISABLED = 0x000010000;
+
+    /**
+     * <p>Mask for use with setFlags indicating bits used for the saveEnabled
+     * property.</p>
+     * {@hide}
+     */
+    static final int SAVE_DISABLED_MASK = 0x000010000;
+
+    /**
+     * <p>Indicates that no drawing cache should ever be created for this view.<p>
+     * {@hide}
+     */
+    static final int WILL_NOT_CACHE_DRAWING = 0x000020000;
+
+    /**
+     * <p>Indicates this view can take / keep focus when int touch mode.</p>
+     * {@hide}
+     */
+    static final int FOCUSABLE_IN_TOUCH_MODE = 0x00040000;
 //     public View(Context context) {
     public View() {
         System.out.println("View");
@@ -185,4 +324,107 @@ public class View{
         }
     }
 
+    /**
+     * Interface definition for a callback to be invoked when a view is clicked.
+     */
+    public interface OnClickListener {
+        /**
+         * Called when a view has been clicked.
+         *
+         * @param v The view that was clicked.
+         */
+        void onClick(View v);
+    }
+
+    /**
+     * Interface definition for a callback to be invoked when a touch event is
+     * dispatched to this view. The callback will be invoked before the touch
+     * event is given to the view.
+     */
+    public interface OnTouchListener {
+        /**
+         * Called when a touch event is dispatched to a view. This allows listeners to
+         * get a chance to respond before the target view.
+         *
+         * @param v The view the touch event has been dispatched to.
+         * @param event The MotionEvent object containing full information about
+         *        the event.
+         * @return True if the listener has consumed the event, false otherwise.
+         */
+        boolean onTouch(View v, MotionEvent event);
+    }
+
+    static class ListenerInfo {
+        public OnClickListener mOnClickListener;
+
+        private OnTouchListener mOnTouchListener;
+
+    }
+    /**
+     * Dispatch a pointer event.
+     * <p>
+     * Dispatches touch related pointer events to {@link #onTouchEvent(MotionEvent)} and all
+     * other events to {@link #onGenericMotionEvent(MotionEvent)}.  This separation of concerns
+     * reinforces the invariant that {@link #onTouchEvent(MotionEvent)} is really about touches
+     * and should not be expected to handle other pointing device features.
+     * </p>
+     *
+     * @param event The motion event to be dispatched.
+     * @return True if the event was handled by the view, false otherwise.
+     */
+    public final boolean dispatchPointerEvent(MotionEvent event) {
+        if (event.isTouchEvent()) {
+            return dispatchTouchEvent(event);
+        } else {
+            return dispatchGenericMotionEvent(event);
+        }
+    }
+
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        System.out.println("dispatchTouchEvent");
+        boolean result = false;
+
+        if (onFilterTouchEventForSecurity(event)) {
+
+            ListenerInfo li = mListenerInfo;
+            if (li != null && li.mOnTouchListener != null
+                    && (mViewFlags & ENABLED_MASK) == ENABLED
+                    && li.mOnTouchListener.onTouch(this, event)) {
+                result = true;
+            }
+
+            if (!result && onTouchEvent(event)) {
+                result = true;
+            }
+        }
+        return result;
+    }
+
+    public boolean dispatchGenericMotionEvent(MotionEvent event) {
+        System.out.println("dispatchGenericMotionEvent");
+
+        return false;
+    }
+
+    public boolean onFilterTouchEventForSecurity(MotionEvent event) {
+        //noinspection RedundantIfStatement
+        return true;
+    }
+
+    public boolean onTouchEvent(MotionEvent event) {
+        final float x = event.getX();
+        final float y = event.getY();
+        final int action = event.getAction();
+        switch (action) {
+                case MotionEvent.ACTION_UP:
+                break;
+                case MotionEvent.ACTION_DOWN:
+                break;
+                case MotionEvent.ACTION_CANCEL:
+                break;
+                case MotionEvent.ACTION_MOVE:
+                break;
+        }
+        return false;
+    }
 }
