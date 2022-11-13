@@ -79,7 +79,7 @@ public final class ActivityThread  {
             System.out.println("attach "+className);
             mSystemThread = system;
             if( !system ){
-                   System.out.println(" 附上非系统进程 ");
+                   System.out.println("附上非系统进程 ");
 //                 final IActivityManager mgr = ActivityManager.getService();
                     Activity activity = handleLaunchActivity(className);
 

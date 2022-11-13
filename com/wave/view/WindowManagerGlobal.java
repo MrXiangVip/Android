@@ -33,7 +33,7 @@ public final class WindowManagerGlobal {
             new ArrayList<WindowManager.LayoutParams>();
 
     private WindowManagerGlobal() {
-        System.out.println(" WindowManagerGlobal 构造函数 ");
+        System.out.println("WindowManagerGlobal 构造函数 ");
     }
 
 

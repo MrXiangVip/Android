@@ -23,7 +23,7 @@ public class Handler {
                     "Can't create handler inside thread " + Thread.currentThread()
                             + " that has not called Looper.prepare()");
         }
-        System.out.println(" 获取到 looper ");
+        System.out.println("获取到 looper ");
 
         mQueue = mLooper.mQueue;
     }
