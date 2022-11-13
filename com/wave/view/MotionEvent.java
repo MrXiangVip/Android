@@ -223,8 +223,68 @@ public final class MotionEvent extends InputEvent {
 //         return nativeGetAxisValue(mNativePtr, AXIS_Y, 0, HISTORY_CURRENT);
         return 0;
     }
+    /*
+    * Returns the X coordinate of this event for the given pointer
+    */
+    public final float getX(int pointerIndex) {
+        return 0;
+    }
+    /*
+    * Returns the Y coordinate of this event for the given pointer
+    */
+    public final float getY(int pointerIndex) {
+//         return nativeGetAxisValue(mNativePtr, AXIS_Y, pointerIndex, HISTORY_CURRENT);
+           return 0;
+    }
     public final int getAction() {
 //         return nativeGetAction(mNativePtr);
         return 0;
+    }
+    /**
+     * Sets this event's action.
+     */
+    public final void setAction(int action) {
+//         nativeSetAction(mNativePtr, action);
+    }
+
+    public final int getActionIndex() {
+        return 0;
+    }
+
+    public final int getFlags() {
+        return 0;
+    }
+    public final void setTargetAccessibilityFocus(boolean targetsFocus) {
+        final int flags = getFlags();
+
+    }
+
+    /**
+     * Adjust this event's location.
+     * @param deltaX Amount to add to the current X coordinate of the event.
+     * @param deltaY Amount to add to the current Y coordinate of the event.
+     */
+    public final void offsetLocation(float deltaX, float deltaY) {
+        return;
+    }
+
+    /**
+     * Applies a transformation matrix to all of the points in the event.
+     *
+     * @param matrix The transformation matrix to apply.
+     */
+    public final void transform(Matrix matrix) {
+        return;
+    }
+
+    /**
+     * Create a new MotionEvent, copying from an existing one.
+     */
+    static public MotionEvent obtain(MotionEvent other) {
+
+
+        MotionEvent ev = new MotionEvent();
+
+        return ev;
     }
 }

@@ -6,6 +6,37 @@ package com.wave.view;
 
 
 public class View{
+
+    /**
+     * This view is visible.
+     * Use with {@link #setVisibility} and <a href="#attr_android:visibility">{@code
+     * android:visibility}.
+     */
+    public static final int VISIBLE = 0x00000000;
+
+    /**
+     * This view is invisible, but it still takes up space for layout purposes.
+     * Use with {@link #setVisibility} and <a href="#attr_android:visibility">{@code
+     * android:visibility}.
+     */
+    public static final int INVISIBLE = 0x00000004;
+
+    /**
+     * This view is invisible, and it doesn't take any space for layout
+     * purposes. Use with {@link #setVisibility} and <a href="#attr_android:visibility">{@code
+     * android:visibility}.
+     */
+    public static final int GONE = 0x00000008;
+
+    /**
+     * Mask for use with setFlags indicating bits used for visibility.
+     * {@hide}
+     */
+    static final int VISIBILITY_MASK = 0x0000000C;
+
+    private static final int[] VISIBILITY_FLAGS = {VISIBLE, INVISIBLE, GONE};
+
+
     public static final int NO_ID = -1;
     int mID = NO_ID;
     protected ViewParent mParent;
@@ -152,6 +183,52 @@ public class View{
      * {@hide}
      */
     static final int FOCUSABLE_IN_TOUCH_MODE = 0x00040000;
+
+
+    /**
+     * The distance in pixels from the left edge of this view's parent
+     * to the left edge of this view.
+     * {@hide}
+     */
+    protected int mLeft;
+    /**
+     * The distance in pixels from the left edge of this view's parent
+     * to the right edge of this view.
+     * {@hide}
+     */
+    protected int mRight;
+    /**
+     * The distance in pixels from the top edge of this view's parent
+     * to the top edge of this view.
+     * {@hide}
+     */
+    protected int mTop;
+    /**
+     * The distance in pixels from the top edge of this view's parent
+     * to the bottom edge of this view.
+     * {@hide}
+     */
+    protected int mBottom;
+
+    /**
+     * The offset, in pixels, by which the content of this view is scrolled
+     * horizontally.
+     * {@hide}
+     */
+    protected int mScrollX;
+    /**
+     * The offset, in pixels, by which the content of this view is scrolled
+     * vertically.
+     * {@hide}
+     */
+    protected int mScrollY;
+
+    /**
+     * The animation currently associated with this view.
+     * @hide
+     */
+    protected Animation mCurrentAnimation = null;
+
 //     public View(Context context) {
     public View() {
         System.out.println("View");
@@ -427,4 +504,53 @@ public class View{
         }
         return false;
     }
+
+    /**
+     * Determines whether the given point, in local coordinates is inside the view.
+     */
+    /*package*/ final boolean pointInView(float localX, float localY) {
+        return pointInView(localX, localY, 0);
+    }
+
+    public boolean pointInView(float localX, float localY, float slop) {
+        return localX >= -slop && localY >= -slop && localX < ((mRight - mLeft) + slop) &&
+                localY < ((mBottom - mTop) + slop);
+    }
+
+
+    /**
+     * Returns true if the transform matrix is the identity matrix.
+     * Recomputes the matrix if necessary.
+     *
+     * @return True if the transform matrix is the identity matrix, false otherwise.
+     */
+    final boolean hasIdentityMatrix() {
+        return false;
+    }
+
+    /**
+     * Utility method to retrieve the inverse of the current mMatrix property.
+     * We cache the matrix to avoid recalculating it when transform properties
+     * have not changed.
+     *
+     * @return The inverse of the current matrix of this view.
+     * @hide
+     */
+    public final Matrix getInverseMatrix() {
+
+
+        return null;
+    }
+
+    /**
+     * Get the animation currently associated with this view.
+     *
+     * @return The animation that is currently playing or
+     *         scheduled to play for this view.
+     */
+    public Animation getAnimation() {
+        return mCurrentAnimation;
+    }
+
+
 }
