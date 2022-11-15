@@ -31,6 +31,10 @@
 
 ![Image text](https://github.com/MrXiangVip/Android/blob/master/image/20220907190153.png)
 
+写一个类继承activity ,实现onCreate方法.从桌面点击图标,调用startActivity启动这个类.
+
+![Image text](https://github.com/MrXiangVip/Android/blob/master/image/20221025155258.png)
+
 参考资料：
 
 https://blog.csdn.net/yuhentian/article/details/79945112
