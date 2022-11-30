@@ -6,6 +6,9 @@
 package com.wave;
 
 import com.wave.view.*;
+import com.wave.os.*;
+import com.wave.am.ActivityManagerService;
+
 public class Activity extends ContextThemeWrapper implements KeyEvent.Callback{
 // public class Activity{
     private ActivityManagerService  ams;

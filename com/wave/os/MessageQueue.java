@@ -3,7 +3,7 @@
  源码路径
  frameworks/base/core/java/android/os/MessageQueue.java
  */
-package com.wave;
+package com.wave.os;
 
 import java.util.*;
 

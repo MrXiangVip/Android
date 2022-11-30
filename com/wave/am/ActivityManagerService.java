@@ -3,10 +3,12 @@
 * path: frameworks/base/services/core/java/com/android/server/am/ActivityManagerService.java
 */
 
-package com.wave;
+package com.wave.am;
 
+import com.wave.SystemService;
+import com.wave.os.Process;
 import com.wave.wm.WindowManagerService;
-import com.wave.Process.ProcessStartResult;
+import com.wave.os.Process.ProcessStartResult;
 public class ActivityManagerService{
 
 

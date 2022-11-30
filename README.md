@@ -24,6 +24,7 @@
     在文件末尾新添加一行：
     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server
     这个路径指向libjvm.so 文件
+    sudo /sbin/ldconfig 使得修改生效
 
 
 

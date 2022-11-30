@@ -6,8 +6,8 @@
 package com.wave.view;
 
 import com.wave.view.InputChannel;
-import com.wave.Handler;
-import com.wave.Message;
+import com.wave.os.Handler;
+import com.wave.os.Message;
 import com.wave.view.View.MeasureSpec;
 
 

@@ -2,7 +2,7 @@
  源码路径
  frameworks/base/core/java/android/os/Looper.java
  */
-package com.wave;
+package com.wave.os;
 
 import java.lang.ThreadLocal;
 

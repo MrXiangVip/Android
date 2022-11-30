@@ -10,4 +10,4 @@ run: ZygoteInit.class app_process
 	./app_process
 
 clean:
-	rm -f com/wave/*.class app_process   com/packages/*.class
+	rm -f com/wave/*.class app_process   com/packages/*.class com/wave/*/*.class

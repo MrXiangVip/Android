@@ -1,5 +1,5 @@
 
-package com.wave;
+package com.wave.net;
 public class LocalSocketAddress
 {
     private final String name;

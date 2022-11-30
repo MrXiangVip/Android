@@ -2,7 +2,7 @@
  源码路径
  frameworks/base/core/java/android/os/Message.java
  */
-package com.wave;
+package com.wave.os;
 
 public final class Message  {
 

@@ -2,7 +2,7 @@
  源码路径
  frameworks/base/core/java/android/os/Handler.java
  */
-package com.wave;
+package com.wave.os;
 
 
 public class Handler {
