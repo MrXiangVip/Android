@@ -4,6 +4,7 @@
  */
 package com.wave;
 import com.wave.view.*;
+import com.wave.view.LayoutInflater;
 
 public class PhoneWindow extends Window{
     private DecorView mDecor;

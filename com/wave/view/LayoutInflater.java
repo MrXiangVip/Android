@@ -3,7 +3,7 @@
  frameworks/base/core/java/android/view/LayoutInflater.java
  */
 
-package com.wave;
+package com.wave.view;
 
 public abstract class LayoutInflater {
 

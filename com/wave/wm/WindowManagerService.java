@@ -1,3 +1,7 @@
+/*
+ * 源码路径：
+ *frameworks/base/services/core/java/com/android/server/wm/WindowManagerService.java
+ */
 package com.wave.wm;
 
 import com.wave.input.InputManagerService;
