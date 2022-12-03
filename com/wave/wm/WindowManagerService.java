@@ -10,6 +10,7 @@ import com.wave.WindowManagerPolicy;
 import static com.wave.view.WindowManager.LayoutParams.FIRST_SUB_WINDOW;
 import static com.wave.view.WindowManager.LayoutParams.LAST_SUB_WINDOW;
 import com.wave.view.WindowManager.LayoutParams;
+import com.wave.graphics.Rect;
 
 public class WindowManagerService {
 
@@ -38,8 +39,9 @@ public class WindowManagerService {
 //             LayoutParams attrs, int viewVisibility, int displayId, Rect outFrame,
 //             Rect outContentInsets, Rect outStableInsets, Rect outOutsets,
 //             DisplayCutout.ParcelableWrapper outDisplayCutout, InputChannel outInputChannel)
-    public int addWindow(LayoutParams attrs ){
+    public int addWindow(LayoutParams attrs , Rect outFrame){
         System.out.println("addWindow");
+        int res =0;
         final int type = attrs.type;
         synchronized(mWindowMap) {
 
@@ -47,7 +49,11 @@ public class WindowManagerService {
                 System.out.println("type " + type);
             }
         }
-        int res =0;
+
+//         final WindowState win = new WindowState(this, session, client, token, parentWindow,
+//                     appOp[0], seq, attrs, viewVisibility, session.mUid,
+//                     session.mCanAddInternalSystemWindow);
+
         return res;
     }
 

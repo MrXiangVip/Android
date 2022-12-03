@@ -135,13 +135,18 @@ public final class ActivityThread  {
         ViewManager wm = a.getWindowManager();
         WindowManager.LayoutParams l = r.window.getAttributes();
         a.mDecor = decor;
-
+        l.type = WindowManager.LayoutParams.TYPE_BASE_APPLICATION;
         wm.addView(decor, l);
     }
 
     public ActivityClientRecord performResumeActivity( boolean finalStateRequest,String className) {
         System.out.println("performResumeActivity " );
         final ActivityClientRecord r = mActivities.get( className );
+        try{
+            r.activity.onResume();
+        }catch(Exception e){
+                e.printStackTrace();
+        }
         return r;
     }
     public Activity newActivity(String className){

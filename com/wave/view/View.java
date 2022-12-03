@@ -262,6 +262,7 @@ public class View{
                     + " it already has a parent");
         }
     }
+
     public final void measure(int widthMeasureSpec, int heightMeasureSpec) {
         System.out.println("measure");
     }

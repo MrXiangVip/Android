@@ -81,6 +81,12 @@ public abstract class ViewGroup extends View implements  ViewManager {
 
     }
 
+    public void removeAllViews() {
+//         removeAllViewsInLayout();
+//         requestLayout();
+//         invalidate(true);
+    }
+
     public void removeView(View view){
             System.out.println("removeView");
     }

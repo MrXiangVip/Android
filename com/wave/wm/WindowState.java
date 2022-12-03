@@ -8,5 +8,11 @@ import com.wave.WindowManagerPolicy;
 class WindowState extends WindowContainer<WindowState> implements WindowManagerPolicy.WindowState {
 
 
+//     WindowState(WindowManagerService service, Session s, IWindow c, WindowToken token,
+//             WindowState parentWindow, int appOp, int seq, WindowManager.LayoutParams a,
+//             int viewVisibility, int ownerId, boolean ownerCanAddInternalSystemWindow) {
+//
+//
+//     }
 
 }

@@ -2,13 +2,16 @@
 
 模拟实现android 的框架层
 
+
 运行环境:
 
     操作系统:ubuntu 20.04  
     java -version :openjdk version "1.8.0_342"
     gcc --version :gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0
     g++ --version :g++ (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0
+    将prebuilts/tools/xmlpull/*.jar 拷贝到 /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext 目录下
     终端下运行 build.sh
+
 
 错误1：
 

@@ -34,10 +34,12 @@ public class Activity extends ContextThemeWrapper implements KeyEvent.Callback{
         System.out.println("setContentView ");
         getWindow().setContentView(layoutResID);
     }
+
     public void setContentView(View view) {
          System.out.println("setContentView ");
          getWindow().setContentView(view );
     }
+
     public void startActivity(String className){
         System.out.println("startActivity "+className);
         ams.startActivity( className );
@@ -45,6 +47,10 @@ public class Activity extends ContextThemeWrapper implements KeyEvent.Callback{
 
     protected void onCreate( ) {
         System.out.println("onCreate ");
+    }
+
+    protected void onResume() {
+        System.out.println("onResume ");
     }
 
     public void attach( ActivityThread aThread, Window window){
