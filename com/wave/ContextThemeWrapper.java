@@ -5,6 +5,8 @@
 package com.wave;
 import com.wave.ContextWrapper;
 import com.wave.res.Resources;
+import com.wave.Context;
+
 
 public class ContextThemeWrapper extends ContextWrapper {
 
@@ -21,4 +23,9 @@ public class ContextThemeWrapper extends ContextWrapper {
 
         return mResources;
     }
+
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(newBase);
+    }
+
 }

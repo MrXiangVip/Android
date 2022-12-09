@@ -6,8 +6,15 @@ package com.wave;
 import com.wave.ActivityThread;
 class ContextImpl extends Context {
 
-    private ContextImpl(){
+    private Context mOuterContext;
+    final  ActivityThread mMainThread;
+    final  String mClassName;
 
+//
+    private ContextImpl( ContextImpl container,  ActivityThread mainThread, String className){
+        mOuterContext = this;
+        mMainThread = mainThread;
+        mClassName = className;
     }
 
     static ContextImpl createSystemContext(ActivityThread mainThread) {
@@ -19,7 +26,14 @@ class ContextImpl extends Context {
 //                 context.mResourcesManager.getDisplayMetrics());
 //         return context;
 
-            ContextImpl  context = new ContextImpl();
+            ContextImpl  context = new ContextImpl(null, mainThread,null);
             return context;
+    }
+
+
+    static ContextImpl createActivityContext(ActivityThread mainThread, String className) {
+        System.out.println("createActivityContext");
+        ContextImpl  context = new ContextImpl( null, mainThread, className);
+        return context;
     }
 }

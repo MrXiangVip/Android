@@ -11,4 +11,12 @@ public class ContextWrapper extends Context {
         mBase = base;
     }
 
+    protected void attachBaseContext(Context base) {
+        if (mBase != null) {
+            System.out.println("Base context already set");
+            return;
+        }
+        mBase = base;
+    }
+
 }

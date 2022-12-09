@@ -8,14 +8,17 @@ package com.wave;
 import com.wave.view.*;
 import com.wave.os.*;
 import com.wave.am.ActivityManagerService;
+import com.wave.res.Configuration;
 
-public class Activity extends ContextThemeWrapper implements KeyEvent.Callback{
+
+public class Activity extends ContextThemeWrapper implements Window.Callback, KeyEvent.Callback{
 // public class Activity{
     private ActivityManagerService  ams;
 
     private Window mWindow;
     private WindowManager mWindowManager;
     /*package*/ View mDecor = null;
+    /*package*/ Configuration mCurrentConfig;
 
 
     /*package*/ ActivityThread mMainThread;
@@ -53,18 +56,27 @@ public class Activity extends ContextThemeWrapper implements KeyEvent.Callback{
         System.out.println("onResume ");
     }
 
-    public void attach( ActivityThread aThread, Window window){
+
+    public void attach(Context context,  ActivityThread aThread, Configuration config, Window window){
         System.out.println("attach ");
+        attachBaseContext(context);
+
         mUiThread = Thread.currentThread();
         mMainThread = aThread;
 
         mWindow = new PhoneWindow(this, window);
+        mWindow.setCallback( this );
         mWindow.setWindowManager( );
         mWindowManager = mWindow.getWindowManager();
+        mCurrentConfig = config;
 
         ams =ActivityManagerService.getInstance();
     }
 
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(newBase);
+
+    }
 
     public boolean dispatchKeyEvent(KeyEvent event) {
         System.out.println("dispatchKeyEvent");
@@ -99,4 +111,6 @@ public class Activity extends ContextThemeWrapper implements KeyEvent.Callback{
 //         }
     }
 
+    public void onContentChanged() {
+    }
 }

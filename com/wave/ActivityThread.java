@@ -10,16 +10,20 @@ import com.wave.Activity;
 import java.util.HashMap;
 import com.wave.os.*;
 import com.wave.view.*;
+import com.wave.res.Configuration;
+
 public final class ActivityThread  {
 
 
     private ContextImpl mSystemContext;
     private boolean mSystemThread = false;
+    Configuration mCompatConfiguration;
 
 
     public static final class ActivityClientRecord {
         Activity activity;
         Window window;
+        String className;
     }
 
     final HashMap<String, ActivityClientRecord> mActivities = new HashMap<>();
@@ -100,23 +104,34 @@ public final class ActivityThread  {
     }
     public Activity handleLaunchActivity(String className){
         System.out.println("handleLaunchActivity "+className);
-        Activity activity = performLaunchActivity( className );
+        ActivityClientRecord r = mActivities.get( className );
+        if( r == null ){
+            r = new ActivityClientRecord();
+            r.className = className;
+        }
 
+        Activity activity = performLaunchActivity( r );
         return activity;
     }
-    private Activity performLaunchActivity(String className) {
-        System.out.println("performLaunchActivity "+className);
-        Activity activity = newActivity( className);
+    private Activity performLaunchActivity(ActivityClientRecord r) {
+        System.out.println("performLaunchActivity "+r.className);
+        ContextImpl appContext = createBaseContextForActivity(r);
+
+        if (mCompatConfiguration == null) {
+            mCompatConfiguration = new Configuration();
+        }
+        Configuration config = new Configuration(mCompatConfiguration);
+
+        Activity activity = newActivity( r.className);
 
         if( activity !=null ){
             Window window = null;
 
-            activity.attach(this, window);
+            activity.attach(appContext, this, config,  window);
             activity.onCreate();
         }
-        ActivityClientRecord r= new ActivityClientRecord();
         r.activity = activity;
-        mActivities.put(className, r );
+        mActivities.put(r.className, r );
         return activity;
     }
 //     public Activity handleLaunchActivity(ActivityClientRecord r,
@@ -161,4 +176,10 @@ public final class ActivityThread  {
             return null;
      }
 
+    private ContextImpl createBaseContextForActivity(ActivityClientRecord r) {
+
+        ContextImpl appContext = ContextImpl.createActivityContext(
+                this, r.className);
+        return appContext;
+    }
 }

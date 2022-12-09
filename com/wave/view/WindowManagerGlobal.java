@@ -53,6 +53,7 @@ public final class WindowManagerGlobal {
         View panelParentView = null;
 
         synchronized (mLock) {
+//             root = new SprdViewRootImpl(view.getContext(), display);
             root = new ViewRootImpl();
             view.setLayoutParams(wparams);
             mViews.add(view);
