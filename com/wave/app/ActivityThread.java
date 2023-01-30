@@ -2,9 +2,9 @@
  源码路径
  frameworks/base/core/java/android/app/ActivityThread.java
  */
-package com.wave;
+package com.wave.app;
 
-import com.wave.ContextImpl;
+import com.wave.app.ContextImpl;
 import com.wave.Activity;
 // import java.util.ArrayMap;
 import java.util.HashMap;
@@ -128,7 +128,7 @@ public final class ActivityThread  {
             Window window = null;
 
             activity.attach(appContext, this, config,  window);
-            activity.onCreate();
+            activity.performCreate();
         }
         r.activity = activity;
         mActivities.put(r.className, r );
@@ -158,7 +158,7 @@ public final class ActivityThread  {
         System.out.println("performResumeActivity " );
         final ActivityClientRecord r = mActivities.get( className );
         try{
-            r.activity.onResume();
+            r.activity.performResume();
         }catch(Exception e){
                 e.printStackTrace();
         }

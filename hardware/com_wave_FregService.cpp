@@ -10,6 +10,7 @@ JNIEXPORT jint JNICALL Java_com_wave_FregService_init_1native
   (JNIEnv *, jclass){
 
     printf("init freg\n");
+    return 0;
 }
 
 /*
@@ -31,7 +32,7 @@ JNIEXPORT void JNICALL Java_com_wave_FregService_setValue_1native
 JNIEXPORT jint JNICALL Java_com_wave_FregService_getValue_1native
   (JNIEnv *, jclass, jint){
     printf("getValue\n");
-
+    return 0;
 }
 
 

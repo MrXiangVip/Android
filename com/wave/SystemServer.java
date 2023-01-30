@@ -8,7 +8,7 @@ import com.wave.os.*;
 import com.wave.pm.PackageManagerService;
 import com.wave.Context;
 import com.wave.wm.WindowManagerService;
-import com.wave.ActivityThread;
+import com.wave.app.ActivityThread;
 import com.wave.PhoneWindowManager;
 import com.wave.input.InputManagerService;
 import com.wave.am.ActivityManagerService;

@@ -87,7 +87,8 @@ public class PhoneWindow extends Window{
 
     protected ViewGroup generateLayout(DecorView decor) {
         System.out.println("generateLayout");
-        mDecor.onResourcesLoaded(mLayoutInflater);
+        int layoutResource=0;
+        mDecor.onResourcesLoaded(mLayoutInflater, layoutResource);
         ViewGroup contentParent = (ViewGroup)findViewById(ID_ANDROID_CONTENT);
         return contentParent;
     }

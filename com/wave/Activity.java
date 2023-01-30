@@ -9,6 +9,7 @@ import com.wave.view.*;
 import com.wave.os.*;
 import com.wave.am.ActivityManagerService;
 import com.wave.res.Configuration;
+import com.wave.app.ActivityThread;
 
 
 public class Activity extends ContextThemeWrapper implements Window.Callback, KeyEvent.Callback{
@@ -17,7 +18,7 @@ public class Activity extends ContextThemeWrapper implements Window.Callback, Ke
 
     private Window mWindow;
     private WindowManager mWindowManager;
-    /*package*/ View mDecor = null;
+    /*package*/public View mDecor = null;
     /*package*/ Configuration mCurrentConfig;
 
 
@@ -48,10 +49,15 @@ public class Activity extends ContextThemeWrapper implements Window.Callback, Ke
         ams.startActivity( className );
     }
 
+    public final void performCreate( ) {
+            onCreate( );
+    }
     protected void onCreate( ) {
         System.out.println("onCreate ");
     }
-
+    public final void performResume( ) {
+        onResume();
+    }
     protected void onResume() {
         System.out.println("onResume ");
     }

@@ -130,6 +130,6 @@ public class ZygoteInit{
 
     static final Runnable childZygoteInit(String className) {
         System.out.println("childZygoteInit  这里启动 activitythread "+className);
-        return new MethodAndArgsCaller("com.wave.ActivityThread", className);
+        return new MethodAndArgsCaller("com.wave.app.ActivityThread", className);
     }
 }

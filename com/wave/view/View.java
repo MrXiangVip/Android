@@ -4,6 +4,8 @@
  */
 package com.wave.view;
 
+import com.wave.util.AttributeSet;
+import com.wave.Context;
 
 public class View{
 
@@ -45,6 +47,7 @@ public class View{
     private static boolean sUseBrokenMakeMeasureSpec = false;
     int mViewFlags;
     ListenerInfo mListenerInfo;
+    protected Context mContext;
 
     /**
      * This view is enabled. Interpretation varies by subclass.
@@ -229,10 +232,7 @@ public class View{
      */
     protected Animation mCurrentAnimation = null;
 
-//     public View(Context context) {
-    public View() {
-        System.out.println("View");
-    }
+
 
     public final <T extends View> T findViewById(int id) {
         if (id == NO_ID) {
@@ -438,6 +438,12 @@ public class View{
         private OnTouchListener mOnTouchListener;
 
     }
+    public View(Context context) {
+        mContext = context;
+    }
+    public View(Context context,  AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        this(context);
+    }
     /**
      * Dispatch a pointer event.
      * <p>
@@ -552,6 +558,8 @@ public class View{
     public Animation getAnimation() {
         return mCurrentAnimation;
     }
+
+
 
 
 }

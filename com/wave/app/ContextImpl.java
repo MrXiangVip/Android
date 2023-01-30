@@ -2,19 +2,27 @@
  源码路径
  frameworks/base/core/java/android/app/ContextImpl.java
  */
-package com.wave;
-import com.wave.ActivityThread;
+package com.wave.app;
+import com.wave.app.ActivityThread;
+import com.wave.Context;
+import com.wave.res.Resources;
+
 class ContextImpl extends Context {
 
     private Context mOuterContext;
     final  ActivityThread mMainThread;
     final  String mClassName;
+    private Resources mResources;
 
 //
     private ContextImpl( ContextImpl container,  ActivityThread mainThread, String className){
         mOuterContext = this;
         mMainThread = mainThread;
         mClassName = className;
+    }
+
+    public Resources getResources() {
+        return mResources;
     }
 
     static ContextImpl createSystemContext(ActivityThread mainThread) {

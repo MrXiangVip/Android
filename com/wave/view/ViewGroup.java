@@ -5,7 +5,8 @@
 package com.wave.view;
 
 import java.util.ArrayList;
-
+import com.wave.util.AttributeSet;
+import com.wave.Context;
 public abstract class ViewGroup extends View implements  ViewManager {
 
 
@@ -14,6 +15,9 @@ public abstract class ViewGroup extends View implements  ViewManager {
     // Number of valid children in the mChildren array, the rest should be null or not
     // considered as children
     private int mChildrenCount;
+
+    private static final int ARRAY_INITIAL_CAPACITY = 12;
+
     private ArrayList<View> mPreSortedChildren;
     // Lazily-created holder for point computations.
     private float[] mTempPoint;
@@ -69,6 +73,36 @@ public abstract class ViewGroup extends View implements  ViewManager {
 
         private TouchTarget() {
         }
+    }
+
+
+    public ViewGroup(Context context) {
+        this(context, null);
+    }
+
+    public ViewGroup(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public ViewGroup(Context context, AttributeSet attrs, int defStyleAttr) {
+        this(context, attrs, defStyleAttr, 0);
+    }
+
+    public ViewGroup(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+
+        initViewGroup();
+        initFromAttributes(context, attrs, defStyleAttr, defStyleRes);
+    }
+
+
+    private void initViewGroup() {
+        mChildren = new View[ARRAY_INITIAL_CAPACITY];
+        mChildrenCount = 0;
+    }
+    private void initFromAttributes(
+            Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        return;
     }
 
     public void addView(View view, ViewGroup.LayoutParams params){

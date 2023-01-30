@@ -52,8 +52,8 @@ public abstract class LayoutInflater {
     }
 
     public View inflate( int resource,  ViewGroup root, boolean attachToRoot) {
-//         final Resources res = getContext().getResources();
-        final Resources res = new Resources();
+        final Resources res = getContext().getResources();
+//         final Resources res = new Resources();
         XmlResourceParser parser = res.getLayout(resource);
         try{
             return inflate(parser, root, attachToRoot);
@@ -65,9 +65,33 @@ public abstract class LayoutInflater {
 
     public View inflate(XmlPullParser parser,  ViewGroup root, boolean attachToRoot) {
 
+            final Context inflaterContext = mContext;
+
             View result = root;
+            try{
+                final String name = parser.getName();
+
+                final View temp = createViewFromTag(root, name, inflaterContext);
+
+            }catch(Exception e){
+            }
             return result;
 
     }
 
+    View createViewFromTag(View parent, String name, Context context){
+        View view= new View(context);
+        view = createView(context, name, null);
+        return view;
+    }
+
+    public final View createView( Context viewContext,  String name, String prefix){
+        try{
+        }catch(Exception e){
+
+        }finally{
+
+        }
+        return null;
+    }
 }
