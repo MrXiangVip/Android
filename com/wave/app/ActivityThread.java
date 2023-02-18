@@ -11,6 +11,7 @@ import java.util.HashMap;
 import com.wave.os.*;
 import com.wave.view.*;
 import com.wave.res.Configuration;
+import com.wave.OS;
 
 public final class ActivityThread  {
 
@@ -62,9 +63,11 @@ public final class ActivityThread  {
     }
     public static void main(String args) {
         System.out.println("ActivityThread--main--"+args);
+//
+        String className = args;
+        OS.Prctl( className );
         Looper.prepareMainLooper();
         ActivityThread thread = new ActivityThread();
-        String className = args;
         thread.attach(false, className);
         if (sMainThreadHandler == null) {
                 sMainThreadHandler = thread.getHandler();

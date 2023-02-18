@@ -1,4 +1,4 @@
-读万卷书，不如动手实现
+read the fucking source code, write the fucking code
 
 模拟实现android 的框架层
 

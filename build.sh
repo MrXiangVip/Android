@@ -13,10 +13,12 @@ echo ${LD_LIBRARY_PATH}
 cd ${VPATH}/com/wave
 echo "生成头文件"
 javac -d . Zygote.java
+javac -d . OS.java
 javah -jni com.wave.Zygote
+javah -jni com.wave.OS
 echo $(pwd)
 echo "编译动态库"
-gcc -fPIC  -I/usr/lib/jvm/java-8-openjdk-amd64/include  -I/usr/lib/jvm/java-8-openjdk-amd64/include/linux -shared -o libandroid.so  Zygote.c
+gcc -fPIC  -I/usr/lib/jvm/java-8-openjdk-amd64/include  -I/usr/lib/jvm/java-8-openjdk-amd64/include/linux -shared -o libandroid.so  Zygote.c  OS.c
 export LD_LIBRARY_PATH=$(pwd)/:$LD_LIBRARY_PATH
 
 
