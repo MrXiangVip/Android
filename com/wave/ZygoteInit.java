@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import java.lang.Thread;
 import java.lang.Exception;
 import java.lang.reflect.Method;
+import com.wave.OS;
 
 public class ZygoteInit{
 
@@ -98,11 +99,13 @@ public class ZygoteInit{
 		String abiList = null;
         String socketName = "zygote";
 
+
         final Runnable caller;
 		ZygoteServer zygoteServer = new ZygoteServer();
 		zygoteServer.registerServerSocketFromEnv(socketName);
-
         preload();
+// 		进程重命名为 zygote
+        OS.Prctl("zygote");
         boolean startSystemServer = true;
         if (startSystemServer) {
                 Runnable r = forkSystemServer(abiList, socketName, zygoteServer);

@@ -12,6 +12,7 @@ import com.wave.app.ActivityThread;
 import com.wave.PhoneWindowManager;
 import com.wave.input.InputManagerService;
 import com.wave.am.ActivityManagerService;
+import com.wave.OS;
 
 public final class SystemServer {
     private static final String TAG = "SystemServer";
@@ -27,7 +28,8 @@ public final class SystemServer {
             new SystemServer().run();
     }
     private void run() {
-
+//      进程重命名为 system_server
+        OS.Prctl("system_server");
         Looper.prepareMainLooper();
         mSystemServiceManager = new SystemServiceManager();
 
